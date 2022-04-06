@@ -1,5 +1,7 @@
 package com.example.demo.entites.product;
 
+import java.util.UUID;
+
 public class Product {
   public String uuid;
   public String name;
@@ -16,6 +18,8 @@ public class Product {
       double buyPrice,
       double sellPrice
     ) {
+    UUID uuid = UUID.randomUUID();
+    this.uuid = uuid.toString();
     this.name = name;
     this.description = description;
     this.type = type;

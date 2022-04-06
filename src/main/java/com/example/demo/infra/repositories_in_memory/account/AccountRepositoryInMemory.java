@@ -2,9 +2,9 @@ package com.example.demo.infra.repositories_in_memory.account;
 
 import java.util.ArrayList;
 import com.example.demo.entites.account.Account;
-import com.example.demo.infra.repositories_in_memory.BaseRepositoryInMemory;
+import com.example.demo.usecases.account.IAccountRepository;
 
-public class AccountRepositoryInMemory implements BaseRepositoryInMemory<Account> {
+public class AccountRepositoryInMemory implements IAccountRepository<Account> {
   private ArrayList<Account> accountsList = new ArrayList<Account>();
   private static AccountRepositoryInMemory accountsInstance;
 
@@ -41,6 +41,7 @@ public class AccountRepositoryInMemory implements BaseRepositoryInMemory<Account
     return this.accountsList;
   }
 
+  @Override
   public Account findByEmail(String email) {
     Account accountFound;
     for (Account account : accountsList) {

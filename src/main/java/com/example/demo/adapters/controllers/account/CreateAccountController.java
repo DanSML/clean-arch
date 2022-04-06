@@ -6,11 +6,12 @@ import com.example.demo.usecases.BaseUseCase;
 public class CreateAccountController extends BaseController {
   BaseUseCase createAccount;
 
-  public CreateAccountController(BaseUseCase createAccountUse) {
-    super(createAccountUse);
-    this.createAccount = createAccountUse;
+  public CreateAccountController(BaseUseCase createAccount) {
+    super(createAccount);
+    this.createAccount = createAccount;
   }
 
+  @Override
   public Object handle(Object request) throws Exception, Throwable {
     Object result = createAccount.exec(request);
     return result;

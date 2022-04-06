@@ -1,5 +1,7 @@
 package com.example.demo.entites.account;
 
+import java.util.UUID;
+
 public class Account {
   public String uuid;
   public String name;
@@ -7,6 +9,8 @@ public class Account {
   public String email;
   public String password;
   public Account(String name, String email, String role, String password) {
+    UUID uuid = UUID.randomUUID();
+    this.uuid = uuid.toString();
     this.name = name;
     this.email = email;
     this.role = role;

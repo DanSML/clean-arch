@@ -1,13 +1,13 @@
-package com.example.demo.usecases.account.create_account;
+package com.example.demo.usecases.dto.account;
 
-public class AccountModel {
+public class AccountDTO {
   public String name;
   public String role;
   public String email;
   public String password;
   public String passwordConfirmation;
 
-  public AccountModel (
+  public AccountDTO (
     String name,
     String role,
     String email,

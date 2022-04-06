@@ -1,28 +1,28 @@
 package com.example.demo.usecases.product.create_product;
 
-import java.util.UUID;
-
 import com.example.demo.entites.product.Product;
-import com.example.demo.infra.repositories_in_memory.product.ProductRepositoryInMemory;
 import com.example.demo.usecases.BaseUseCase;
 import com.example.demo.usecases.errors.ErrorHandler;
+import com.example.demo.usecases.product.IProductRepository;
 
 public class CreateProductUseCase implements BaseUseCase {
-  ProductRepositoryInMemory productRepository;
+  IProductRepository<Product> productRepository;
   ErrorHandler err = new ErrorHandler();
 
-  public CreateProductUseCase(ProductRepositoryInMemory productRepository) {
+  public CreateProductUseCase(IProductRepository<Product> productRepository) {
     this.productRepository = productRepository;
   }
 
   @Override
   public Object exec(Object newProduct) throws ErrorHandler {
     Product test = (Product) newProduct;
+    
     // try {
 
     // } catch () {
 
     // } 
+
     Product product = new Product(
       test.name, 
       test.description, 
@@ -31,8 +31,7 @@ public class CreateProductUseCase implements BaseUseCase {
       test.buyPrice, 
       test.sellPrice
     );
-    UUID uuid = UUID.randomUUID();
-    product.setUuid(uuid.toString());
+
     this.productRepository.save(product);
     return product;
   }

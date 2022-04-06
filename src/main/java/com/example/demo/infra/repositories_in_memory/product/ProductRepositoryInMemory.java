@@ -3,9 +3,9 @@ package com.example.demo.infra.repositories_in_memory.product;
 import java.util.ArrayList;
 
 import com.example.demo.entites.product.Product;
-import com.example.demo.infra.repositories_in_memory.BaseRepositoryInMemory;
+import com.example.demo.usecases.product.IProductRepository;
 
-public class ProductRepositoryInMemory implements BaseRepositoryInMemory<Product> {
+public class ProductRepositoryInMemory implements IProductRepository<Product> {
   private ArrayList<Product> productList = new ArrayList<Product>();
   private static ProductRepositoryInMemory productInstance;
 
@@ -45,6 +45,7 @@ public class ProductRepositoryInMemory implements BaseRepositoryInMemory<Product
     this.productList.add(newProduct);
   }
 
+  @Override
   public Product findByName(String name) {
     for (Product product : productList) {
       if (product.name.equals(name)) {
