@@ -9,7 +9,7 @@ import com.example.demo.usecases.account.IAccountRepository;
 import com.example.demo.usecases.dto.account.AccountDTO;
 import com.example.demo.usecases.errors.ErrorHandler;
 
-public class CreateAccount implements BaseUseCase {
+public class CreateAccount implements BaseUseCase<Account> {
   IAccountRepository<Account> accountRepository;
   ErrorHandler err = new ErrorHandler();
 
