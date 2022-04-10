@@ -1,12 +1,16 @@
 package com.example.demo.infra.repositories_in_memory.account;
 
 import java.util.ArrayList;
+
 import com.example.demo.entites.account.Account;
+import com.example.demo.infra.ports.GenerateAuthToken;
 import com.example.demo.usecases.account.IAccountRepository;
 
 public class AccountRepositoryInMemory implements IAccountRepository<Account> {
+  GenerateAuthToken authGenerator = new GenerateAuthToken();
   private ArrayList<Account> accountsList = new ArrayList<Account>();
   private static AccountRepositoryInMemory accountsInstance;
+  private static Account activeAccount;
 
   private AccountRepositoryInMemory() {
     accountsInstance = null;
@@ -17,6 +21,27 @@ public class AccountRepositoryInMemory implements IAccountRepository<Account> {
       accountsInstance = new AccountRepositoryInMemory();
     }
     return accountsInstance;
+  }
+
+  @Override
+  public void setLoggedAccountNull() {
+    if (activeAccount != null) {
+      activeAccount = null;
+    }
+  }
+
+  @Override
+  public void initiateAccountSection(Account account) {
+    if (activeAccount == null) {
+      Account loggedSection = findByEmail(account.email);
+      activeAccount = loggedSection;
+      activeAccount.setAuthToken(authGenerator.exec());
+    }
+  }
+
+  @Override
+  public Account getLoggedAccount() {
+    return activeAccount;
   }
 
   @Override

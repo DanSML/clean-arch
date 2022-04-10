@@ -8,6 +8,7 @@ public class Account {
   public String role;
   public String email;
   public String password;
+  public String authToken;
   public Account(String name, String email, String role, String password) {
     UUID uuid = UUID.randomUUID();
     this.uuid = uuid.toString();
@@ -31,6 +32,9 @@ public class Account {
   public String getRole() {
     return this.role;
   }
+  public String getAuthToken() {
+    return this.authToken;
+  }
   public void setPassword(String password) {
     this.password = password;    
   }
@@ -45,6 +49,9 @@ public class Account {
   }
   public void setRole(String role) {
     this.role = role;
+  }
+  public void setAuthToken(String token) {
+    this.authToken = token;
   }
 	public Account takeBasicData() {
 		return this;

@@ -8,4 +8,7 @@ public interface IAccountRepository<T> {
   public T findByUuid(String uuid);
   public T findByEmail(String email);
   public ArrayList<T> findAll();
+  public T getLoggedAccount();
+  public void initiateAccountSection(T any);
+  public void setLoggedAccountNull();
 }

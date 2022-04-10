@@ -22,22 +22,14 @@ public class ProductRepositoryInMemory implements IProductRepository<Product> {
 
   @Override
   public void delete(String uuid) {
-    for (Product product : productList) {
-      if (product.uuid.equals(uuid)){
-        productList.remove(product);
-      }
-    }
+    productList.removeIf(product -> product.uuid.equals(uuid));
   }
 
   @Override
   public Product update(Product productToUpdate) {
-    for (Product product : productList) {
-      if (productToUpdate.uuid.equals(product.uuid)){
-        product = productToUpdate;
-        return product;
-      }
-    }
-    return null;
+    Product product = this.findByUuid(productToUpdate.uuid);
+    productList.set(productList.indexOf(product), productToUpdate);
+    return productToUpdate;
   }
 
   @Override
